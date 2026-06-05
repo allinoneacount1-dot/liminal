@@ -4,45 +4,104 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════
+   DESIGN TOKENS
+   ═══════════════════════════════════════════════════ */
+
 :root {
   --void: #050505;
   --deep: #0a0a0f;
   --surface: #111118;
-  --border: #1a1a24;
+  --surface-2: #16161f;
+  --border: #1e1e2a;
+  --border-2: #2a2a3a;
   --muted: #6b6b80;
   --text: #e4e4ef;
+  --text-body: #b0b0c8;
   --cyan: #00D4FF;
   --violet: #7B2FFF;
   --accent: #FF3366;
+  --green: #4ade80;
+  --yellow: #facc15;
 }
 
+/* ═══════════════════════════════════════════════════
+   BASE
+   ═══════════════════════════════════════════════════ */
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--void);
-  color: var(--text);
+  color: var(--text-body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 16px;
   line-height: 1.6;
 }
 
+/* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--void); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-::selection { background: rgba(123, 47, 255, 0.3); color: white; }
+::selection {
+  background: rgba(123, 47, 255, 0.3);
+  color: white;
+}
 
-/* Typography: minimum 16px, high contrast */
-h1, h2, h3, h4, h5, h6 { color: #ffffff; }
-p { color: #b0b0c8; font-size: 16px; line-height: 1.7; }
-.text-secondary { color: #8888a0; font-size: 14px; }
-.text-small { color: #6b6b80; font-size: 12px; }
+/* ═══════════════════════════════════════════════════
+   TYPOGRAPHY — Strong hierarchy, high contrast
+   ═══════════════════════════════════════════════════ */
+
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(2.75rem, 6vw, 4.5rem); line-height: 1.05; }
+h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; }
+h3 { font-size: clamp(1.125rem, 2vw, 1.375rem); line-height: 1.3; }
+
+p { color: var(--text-body); font-size: 1rem; line-height: 1.7; }
+.text-muted { color: var(--muted); }
+.text-small { color: var(--muted); font-size: 0.8125rem; }
+.text-xs { color: var(--muted); font-size: 0.75rem; letter-spacing: 0.05em; }
+
+/* ═══════════════════════════════════════════════════
+   SPACING SYSTEM — 8px base
+   ═══════════════════════════════════════════════════ */
+
+/* Section padding: consistent vertical rhythm */
+.section-pad { padding-top: 6rem; padding-bottom: 6rem; }
+@media (min-width: 640px) { .section-pad { padding-top: 8rem; padding-bottom: 8rem; } }
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .container { padding-left: 2.5rem; padding-right: 2.5rem; }
+}
+
+/* ═══════════════════════════════════════════════════
+   COMPONENTS
+   ═══════════════════════════════════════════════════ */
 
 @layer components {
+  /* Glass card */
   .glass {
     background: rgba(17, 17, 24, 0.6);
     backdrop-filter: blur(24px);
@@ -50,16 +109,102 @@ p { color: #b0b0c8; font-size: 16px; line-height: 1.7; }
     border: 1px solid rgba(255, 255, 255, 0.04);
   }
   .glass-strong {
-    background: rgba(17, 17, 24, 0.8);
+    background: rgba(17, 17, 24, 0.85);
     backdrop-filter: blur(40px);
     -webkit-backdrop-filter: blur(40px);
     border: 1px solid rgba(255, 255, 255, 0.06);
   }
-  .glow-cyan { box-shadow: 0 0 40px rgba(0, 212, 255, 0.12), 0 0 80px rgba(0, 212, 255, 0.04); }
-  .glow-violet { box-shadow: 0 0 40px rgba(123, 47, 255, 0.12), 0 0 80px rgba(123, 47, 255, 0.04); }
+
+  /* Glow effects */
+  .glow-cyan { box-shadow: 0 0 40px rgba(0, 212, 255, 0.1), 0 0 80px rgba(0, 212, 255, 0.03); }
+  .glow-violet { box-shadow: 0 0 40px rgba(123, 47, 255, 0.1), 0 0 80px rgba(123, 47, 255, 0.03); }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    padding: 0.875rem 2rem;
+    border-radius: 1rem;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(135deg, #7B2FFF 0%, #00D4FF 100%);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 40px rgba(123, 47, 255, 0.3);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    padding: 0.875rem 2rem;
+    border-radius: 1rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text-body);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .btn-secondary:hover {
+    border-color: rgba(123, 47, 255, 0.4);
+    color: white;
+  }
+
+  /* Card */
+  .card {
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: rgba(17, 17, 24, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: border-color 0.3s ease;
+  }
+  .card:hover {
+    border-color: rgba(123, 47, 255, 0.15);
+  }
+
+  /* Status badge */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .badge-green { background: rgba(74, 222, 128, 0.1); color: #4ade80; }
+  .badge-cyan { background: rgba(0, 212, 255, 0.1); color: #00D4FF; }
+  .badge-yellow { background: rgba(250, 204, 21, 0.1); color: #facc15; }
+  .badge-violet { background: rgba(123, 47, 255, 0.1); color: #7B2FFF; }
 }
+
+/* ═══════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════ */
 
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
 }
