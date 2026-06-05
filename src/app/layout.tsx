@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { NotificationContainer } from "@/components/NotificationToast";
 
 export const metadata: Metadata = {
   title: "LIMINAL — Cross the Threshold",
@@ -14,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="bg-[var(--void)] text-[var(--text)] antialiased font-sans overflow-x-hidden">
         <Navbar />
+        <NotificationContainer />
         <main>{children}</main>
         <Footer />
       </body>

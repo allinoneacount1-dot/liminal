@@ -28,7 +28,7 @@
     "three": "^0.171.0",
     "viem": "^2.21.55",
     "wagmi": "^2.13.0",
-    "zustand": "^5.0.2"
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@types/node": "^22.10.1",
