@@ -4,7 +4,9 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { CinematicBackground, CinematicLoader, NoiseOverlay } from "@/components/CinematicEffects";
 import { HeroSection } from "@/components/HeroSection";
+import { WhyLiminalSection } from "@/components/WhyLiminalSection";
 import { FeaturesSection } from "@/components/FeaturesSection";
+import { DemoSection } from "@/components/DemoSection";
 import { TokenUtilitySection } from "@/components/TokenUtilitySection";
 import { RoadmapSection } from "@/components/RoadmapSection";
 import { FAQSection } from "@/components/FAQSection";
@@ -24,7 +26,9 @@ export default function Home() {
           <CinematicBackground />
           <NoiseOverlay />
           <HeroSection />
+          <WhyLiminalSection />
           <FeaturesSection />
+          <DemoSection />
           <TokenUtilitySection />
           <RoadmapSection />
           <FAQSection />
