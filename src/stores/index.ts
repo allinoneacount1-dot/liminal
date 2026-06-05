@@ -21,32 +21,20 @@ export const useWalletStore = create<WalletState>()(
       balance: "0",
       network: "Solana Mainnet",
       connect: async () => {
-        // Check if Phantom wallet is available
         if (typeof window !== "undefined" && (window as unknown as { solana?: { isPhantom?: boolean; connect: () => Promise<{ publicKey: { toString: () => string } }> } }).solana?.isPhantom) {
           try {
             const provider = (window as unknown as { solana: { connect: () => Promise<{ publicKey: { toString: () => string } }> } }).solana;
             const response = await provider.connect();
             const address = response.publicKey.toString();
-            set({
-              connected: true,
-              address,
-              balance: "124.50",
-            });
+            set({ connected: true, address, balance: "124.50" });
           } catch (err) {
             console.error("Wallet connection failed:", err);
           }
         } else {
-          // Fallback: simulate connection for demo
-          set({
-            connected: true,
-            address: "7a3F92dK8mNp4Qr5St6Uv7Wx8Yz9Ab0Cd1Ef2Gh3Ij4",
-            balance: "124.50",
-          });
+          set({ connected: true, address: "7a3F92dK8mNp4Qr5St6Uv7Wx8Yz9Ab0Cd1Ef2Gh3Ij4", balance: "124.50" });
         }
       },
-      disconnect: () => {
-        set({ connected: false, address: null, balance: "0" });
-      },
+      disconnect: () => set({ connected: false, address: null, balance: "0" }),
     }),
     { name: "liminal-wallet" }
   )
@@ -93,7 +81,6 @@ export const useSwapStore = create<SwapState>((set, get) => ({
   swap: () => {
     const state = get();
     if (!state.fromAmount || parseFloat(state.fromAmount) <= 0) return;
-    // Simulate swap
     alert(`Swapping ${state.fromAmount} ${state.fromToken} → ${state.toAmount} ${state.toToken}`);
   },
 }));
@@ -188,9 +175,7 @@ export const useNotificationStore = create<NotificationState>((set) => ({
   notifications: [],
   add: (n) => {
     const id = Math.random().toString(36).slice(2);
-    set((s) => ({
-      notifications: [...s.notifications, { ...n, id, timestamp: Date.now() }],
-    }));
+    set((s) => ({ notifications: [...s.notifications, { ...n, id, timestamp: Date.now() }] }));
     setTimeout(() => {
       set((s) => ({ notifications: s.notifications.filter((x) => x.id !== id) }));
     }, 5000);
