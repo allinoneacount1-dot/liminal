@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="liminal-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7B2FFF"/>
+      <stop offset="50%" stop-color="#00D4FF"/>
+      <stop offset="100%" stop-color="#7B2FFF"/>
+    </linearGradient>
+    <linearGradient id="liminal-grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00D4FF"/>
+      <stop offset="100%" stop-color="#7B2FFF"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" fill="#050505" stroke="url(#liminal-grad)" stroke-width="2" opacity="0.8"/>
+
+  <!-- Outer ring -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="url(#liminal-grad)" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- Threshold / Gateway shape — abstract L mark -->
+  <!-- Vertical bar -->
+  <rect x="180" y="120" width="32" height="272" rx="4" fill="url(#liminal-grad)" filter="url(#glow)"/>
+
+  <!-- Horizontal bar -->
+  <rect x="180" y="360" width="152" height="32" rx="4" fill="url(#liminal-grad2)" filter="url(#glow)"/>
+
+  <!-- Diagonal accent -->
+  <line x1="212" y1="120" x2="332" y2="240" stroke="#00D4FF" stroke-width="2" opacity="0.5"/>
+  <line x1="332" y1="240" x2="332" y2="360" stroke="#7B2FFF" stroke-width="2" opacity="0.5"/>
+
+  <!-- Center dot — the threshold point -->
+  <circle cx="256" cy="256" r="8" fill="#00D4FF" filter="url(#glow)"/>
+  <circle cx="256" cy="256" r="4" fill="#ffffff"/>
+
+  <!-- Particle dots -->
+  <circle cx="140" cy="140" r="3" fill="#7B2FFF" opacity="0.6"/>
+  <circle cx="372" cy="140" r="2" fill="#00D4FF" opacity="0.4"/>
+  <circle cx="372" cy="372" r="3" fill="#7B2FFF" opacity="0.6"/>
+  <circle cx="140" cy="372" r="2" fill="#00D4FF" opacity="0.4"/>
+  <circle cx="256" cy="80" r="2" fill="#00D4FF" opacity="0.5"/>
+  <circle cx="256" cy="432" r="2" fill="#7B2FFF" opacity="0.5"/>
+  <circle cx="80" cy="256" r="2" fill="#7B2FFF" opacity="0.5"/>
+  <circle cx="432" cy="256" r="2" fill="#00D4FF" opacity="0.5"/>
+</svg>
