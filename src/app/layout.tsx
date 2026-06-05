@@ -5,24 +5,14 @@ import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "LIMINAL — Cross the Threshold",
-  description:
-    "Power Hidden in Silence. The intelligence layer of Web3. Built for those who understand that the greatest power operates without spectacle.",
+  description: "Power Hidden in Silence. The intelligence layer of Web3.",
   keywords: ["LIMINAL", "Web3", "DeFi", "Solana", "Crypto", "Protocol"],
-  openGraph: {
-    title: "LIMINAL — Cross the Threshold",
-    description: "Power Hidden in Silence. The intelligence layer of Web3.",
-    type: "website",
-  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-[var(--void)] text-[var(--text)] antialiased font-sans">
+      <body className="bg-[var(--void)] text-[var(--text)] antialiased font-sans overflow-x-hidden">
         <Navbar />
         <main>{children}</main>
         <Footer />
